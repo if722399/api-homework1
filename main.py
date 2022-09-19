@@ -31,6 +31,19 @@ def create_post(user: Users):
     return {'Description':f'User creado correctamente {user["user_id"]}, su nombre es: {user["user_name"]}'}
 
 
+@app.put('/users/update')
+def update_user(user:Users):
+    user = user.dict()
+
+    if user['user_id'] not in user_dict:
+        raise ValueError(f'User {user["user_id"]} does not exist')
+
+    user_dict[user['user_id']] = user
+
+    return {'Description':f'El user {user["user_id"]} con el nombre: {user["user_name"]} fue actualizado correctamente'}
+
+
+
 
 
 if __name__ == "__main__":
