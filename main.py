@@ -43,6 +43,14 @@ def update_user(user:Users):
     return {'Description':f'El user {user["user_id"]} con el nombre: {user["user_name"]} fue actualizado correctamente'}
 
 
+@app.get('/user/{user_id}')
+def get_user(user_id:int):
+    if user_id not in user_dict:
+        raise ValueError(f'User {user_id} does not exist')
+
+    user = user_dict[user_id]
+    return {'Description':f'La información del usuario {user["user_id"]} con nombre: {user["user_name"]} es la siguiente: {user}'}
+
 
 
 
