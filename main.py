@@ -52,6 +52,15 @@ def get_user(user_id:int):
     return {'Description':f'La información del usuario {user["user_id"]} con nombre: {user["user_name"]} es la siguiente: {user}'}
 
 
+@app.delete("/users/delete/{user_id}")
+def delete_book(user_id: int):
+    if user_id not in user_dict:
+        raise ValueError(f'User {user_id} does not exist')
+    del user_dict[user_id]
+     
+
+    return {'Description': f'El usuario se ha eliminado correctamente.'}
+
 
 
 if __name__ == "__main__":
